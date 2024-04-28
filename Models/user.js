@@ -45,9 +45,9 @@ var userSchema=new mongosse.Schema({
 
 userSchema.methods={
     
-    authenticate:function(plainpassword){
-        return this.securepassword(plainpassword)===this.encry_password
-    },
+    autheticate: function(plainpassword) {
+        return this.securepassword(plainpassword) === this.encry_password;
+      },
     
     securepassword:function(plainpassword){
         if(!plainpassword){
