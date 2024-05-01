@@ -58,3 +58,11 @@ exports.signin=(req,res)=>{
 exports.signout=(req,res)=>{
     res.json({"user":"signout sucessfull"})
 }
+
+//protected routes
+exports.isSignedIn=expressJwt({
+    secret:process.env.SECRET,
+    userProperty: "auth"
+})
+
+//CUSTOM MIDDLEWARE
