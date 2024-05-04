@@ -56,7 +56,8 @@ exports.signin=(req,res)=>{
 
 
 exports.signout=(req,res)=>{
-    res.json({"user":"signout sucessfull"})
+    res.clearCookie("token")
+    res.json({ message:"user signout sucessfull"})
 }
 
 //protected routes
