@@ -25,9 +25,11 @@ app.use(cors())
 
 //ROUTER PATH
 const authRoute=require("./Routers/auth");
+const userRoute=require("./Routers/user");
 
 //ROUTES
 app.use('/api',authRoute);
+app.use('/api',userRoute);
 
 
 
