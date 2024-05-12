@@ -2,27 +2,26 @@ const User=require("../Models/user");
 
 
 exports.getUserbyId=(req, res, next, id)=>{
-    console.log("ID------1-------",id)
     User.findById(id).exec((err,user)=>{
         if(err || !user){
             return res.json({
                 error:"No user found"
             })
         }
-       // console.log("ID-------------",user)
+        console.log("ID-------------",user)
         req.profile=user;
-        console.log("req.profile--------"+req.profile)
+        
     })
     next();
 }
 
 exports.getUser=(req,res)=>{
-   console.log("ID------2-------")
+   
     req.profile.salt=undefined;
     req.profile.encry_password=undefined;
     req.profile.createdAt=undefined;
     req.profile.updatedAt=undefined;
-    console.log("req.profile-----222---"+req.profile)
+    console.log("----",req.profile)
     return res.json(req.profile)
 }
 

@@ -2,34 +2,43 @@ const category=require("../Models/Category")
 
 
 
-exports.getcategorybyid=(req,res,next,id)=>{
-    Category.findById(id)
-        .exec((err,cate)=>{
-            if(err){
-                return res.json({
-                    error:"Category not found"
-                })
-            }
-            req.category=cate;
-        })
-        next()
-}
-
-exports.createcategory=(req,res)=>{
-    const category=new Category(req.body)
-    category.save((err,category)=>{
-        if(err){
+exports.getcategorybyid=(req, res, next, id)=>{
+    category.findById(id).exec((err,cate)=>{
+        if(err || !cate){
             return res.json({
-                error:"not able to save"
+                error:"No Catergory found"
             })
         }
-        return res.json(category)
+       // console.log("ID-------------",user)
+       req.category=cate;
+        console.log(req.category)
+        
     })
+    next();
 }
 
-exports.getcategory=(req,res)=>{
+exports.getCategory=(req,res)=>{
+    console.log("req.category,",req.category)
     return res.json(req.category)
 }
+
+
+exports.createcategory=(req,res)=>{
+        const categoryData=new category(req.body);
+        categoryData.save((err,category)=>{
+            if(err){
+                return res.json({
+                    error:"cannot able to save"
+                })
+            }
+            return res.json(category)
+        })
+}
+
+
+
+
+
 
 exports.getAllcategory=(req,res)=>{
     category.find()
@@ -53,5 +62,18 @@ exports.updatecategory=(req,res)=>{
                 })
             }
             return res.json(updatecategory)
+    })
+}
+
+exports.deletecategory=(req,res)=>{
+    const category=req.category;
+    console.log("category--delete--"+category)
+    category.remove((err,category)=>{
+        if(err){
+            return res.json({
+                error:"Error occured while deteing the category"
+            })
+        }
+        return res.json(category)
     })
 }
