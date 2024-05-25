@@ -27,11 +27,13 @@ app.use(cors())
 const authRoute=require("./Routers/auth");
 const userRoute=require("./Routers/user");
 const categoryRoute=require("./Routers/category");
+const productRoute=require("./Routers/product");
 
 //ROUTES
 app.use('/api',authRoute);
 app.use('/api',userRoute);
 app.use('/api',categoryRoute)
+app.use('/api',productRoute)
 
 
 
