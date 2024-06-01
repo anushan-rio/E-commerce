@@ -5,7 +5,7 @@ const {ObjectId}=mongoose.Schema;
 const ProductSchema=new mongoose.Schema({
     product:{
         type:ObjectId,
-        ref:Product
+        ref:"Product"
     },
     name:String,
     count:Number,
@@ -20,10 +20,15 @@ const OrderSchema=new mongoose.Schema({
     address:{
         type:String
     },
+    status:{
+        type:String,
+        default:"",
+        enum:["Cancelled","Delivered","Shipped","Processing","Recieved"]
+    },
     update:Date,
     user:{
         type:ObjectId,
-        ref:User
+        ref:"User"
     }
 
 },{timestamps:true})

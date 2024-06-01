@@ -28,12 +28,14 @@ const authRoute=require("./Routers/auth");
 const userRoute=require("./Routers/user");
 const categoryRoute=require("./Routers/category");
 const productRoute=require("./Routers/product");
+const orderRoute=require("./Routers/order");
 
 //ROUTES
 app.use('/api',authRoute);
 app.use('/api',userRoute);
 app.use('/api',categoryRoute)
 app.use('/api',productRoute)
+app.use('/api',orderRoute)
 
 
 
